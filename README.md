@@ -88,4 +88,5 @@ class BasePlugin {
 module.exports = BasePlugin;
 ```
 
-
+# 参考
+- https://zhuanlan.zhihu.com/p/129355980
