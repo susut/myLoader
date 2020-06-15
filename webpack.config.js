@@ -1,4 +1,5 @@
 const path = require("path");
+const BasePlugin = require('./src/plugins/basePlugin');
 
 module.exports = {
     mode: "development",
@@ -24,5 +25,10 @@ module.exports = {
                 }
             }
         ]
-    }
+    },
+    plugins: [
+        new BasePlugin(() => {
+            console.log('成功监听到回调');
+        })
+    ]
 }

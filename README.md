@@ -53,8 +53,39 @@ module.exports = function(source) {
 ```
 
 # plugin
+实例化的时候回执行apply方法，plugin监听webpck发出的各种[事件](https://www.webpackjs.com/api/compiler-hooks/#emit)
+```javascript
+class BasePlugin {
+    constructor(doneCallback) {
+    }
+
+    apply(compiler) {
+        // 监听事件
+        // 编译完成
+        compiler.plugin('done', (stats) => {
+            console.log('done');
+        });
+    }
+}
+
+module.exports = BasePlugin;
 ```
 
+```javascript
+class BasePlugin {
+    constructor(doneCallback) {
+        this.doneCallback = doneCallback;
+    }
+
+    apply(compiler) {
+        // 监听到done事件后执行callback
+        compiler.hooks.done.tap('basePlugin', stats => {
+            this.doneCallback(stats);
+        });
+    }
+}
+
+module.exports = BasePlugin;
 ```
 
 
